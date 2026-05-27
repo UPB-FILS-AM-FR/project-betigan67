@@ -2,7 +2,7 @@
 
 | | |
 |-|-|
-|`Author` | [Numele Tău Aici]
+|`Author` | [Trasca Stefan-Gabriel]
 
 ## Description
 Acest proiect reprezintă un **sistem de securitate electronic cu acces pe bază de parolă**, realizat cu ajutorul unui microcontroler. Scopul său principal este de a simula panoul de control al unui seif, validând input-ul utilizatorului și oferind feedback vizual și textual în timp real. Un element cheie al proiectului este persistența datelor: parola setată nu se pierde la oprirea curentului.
@@ -49,3 +49,46 @@ Alimentarea este simplă și eficientă, bazându-se pe un circuit de tensiune m
 ### 3. Arhitectura Software (Logica Codului)
 
 Codul rulat pe Arduino este structurat pe baza unei **Mașini de Stări (State Machine)** care reacționează la evenimente externe:
+
+[ Așteptare Input ] ➡️ [ Verificare vs EEPROM ] ➡️ [ Update Stare (Acces / Eroare / Blocare) ]
+
+1. **Inițializarea (Setup):** La pornire, microcontrolerul citește adresa `0` din memoria EEPROM. Dacă găsește un cod salvat, îl încarcă în memorie; altfel, folosește codul implicit "1234".
+2. **Procesarea Input-ului:** În bucla principală (`loop`), sistemul așteaptă apăsarea unei taste. Cifrele sunt adăugate într-un buffer, tasta `*` resetează input-ul, iar tasta `#` declanșează funcția de verificare.
+3. **Logica de Securitate:** Dacă parola introdusă se potrivește, contoarele de eroare se resetează. Dacă este greșită, se incrementează o variabilă `incercariGresite`. Când aceasta atinge pragul de 3, variabila booleană `blocat` devine `true`, refuzând orice acces până la introducerea codului corect.
+
+
+### Block diagram
+
+
+
+### Schematic
+
+
+
+### Components
+
+| Device | Usage | Price |
+|--------|--------|-------|
+| Arduino Uno | Proceseaza logica și stochează datele | 55 RON |
+| Tastatură 4x4 | Introducerea parolei de acces | 15 RON |
+| LED Verde (3mm) | Semnalizează accesul permis | 1 RON |
+| LED Roșu (3mm) | Semnalizează erorile/blocarea | 1 RON |
+| 2x Rezistor 220Ω| Protejeaza LED-urile | 1 RON |
+| Breadboard | Baza de conectare a componentelor | 10 RON |
+| Fire Jumper | Conectează componentele la placă | 12 RON |
+
+### Libraries
+
+| Library | Description | Usage |
+| :--- | :--- | :--- |
+| [Arduino.h](https://www.arduino.cc/reference/en/) | Core-ul sistemului | Funcțiile de bază (I/O, Serial) |
+| [Keypad.h](https://playground.arduino.cc/Code/Keypad/) | Gestionarea tastaturilor matriciale | Citirea rapidă a tastelor apăsate fără debounce manual |
+| [EEPROM.h](https://docs.arduino.cc/learn/built-in-libraries/eeprom/) | Interacțiunea cu memoria nevolatilă | Salvarea și citirea parolei setate de utilizator |
+
+## Log
+
+### Week 6 - 12 May
+
+### Week 7 - 19 May
+
+### Week 20 - 26 May
