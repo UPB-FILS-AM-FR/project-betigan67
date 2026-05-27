@@ -59,11 +59,11 @@ Codul rulat pe Arduino este structurat pe baza unei **Mașini de Stări (State M
 
 ### Block diagram
 
-
+<img width="1787" height="1164" alt="Screenshot 2026-05-27 104449" src="https://github.com/user-attachments/assets/cd14b86f-41a3-4e60-819c-1df387633504" />
 
 ### Schematic
 
-
+<img width="1442" height="1003" alt="Screenshot 2026-05-27 103919" src="https://github.com/user-attachments/assets/4b8c68f3-8f45-4f11-bf0e-af3e597b1f60" />
 
 ### Components
 
